@@ -17,7 +17,23 @@ def get_pdf_text(path_pdf):
 
 # Step 2: Use spaCy NER with Custom Matcher for Specific Entities
 def perform_ner_with_custom_rules(text):
-    doc = nlp(text)  # Apply spaCy's model to the text
+    
+    """
+    Perform Named Entity Recognition (NER) using custom rules defined with spaCy's Matcher.
+    This function applies spaCy's NLP model to the input text and uses custom patterns to identify
+    specific entities such as "Camera dei Deputati", "Senato della Repubblica", "Presidente della Repubblica",
+    "Governo", "Regione", "Parlamento", "Consiglio superiore della magistratura", and "Consiglio".
+    Args:
+        text (str): The input text to perform NER on.
+    Returns:
+        list: A list of dictionaries, each containing the following keys:
+            - "iri" (str): The IRI (Internationalized Resource Identifier) of the matched entity, derived from the label.
+            - "label" (str): The label of the matched entity.
+            - "span_start" (int): The start character index of the matched span in the input text.
+            - "span_end" (int): The end character index of the matched span in the input text.
+    """
+
+    doc = nlp(text) 
     matcher = Matcher(nlp.vocab)
     
     # Define patterns to match the specific entities you want

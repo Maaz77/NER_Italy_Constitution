@@ -4,6 +4,17 @@ import pdfplumber
 
 
 def extract_dictionaries_from_string(input_string):
+    """
+    Extracts a list of dictionaries from a given string.
+    This function removes all whitespace characters (spaces, newlines, and tabs) from the input string,
+    then searches for a JSON array (enclosed in square brackets) within the string. If a JSON array is found,
+    it attempts to decode it into a list of dictionaries.
+    Args:
+        input_string (str): The input string potentially containing a JSON array.
+    Returns:
+        list[dict] or None: A list of dictionaries if the JSON array is successfully decoded, 
+                            None if no JSON array is found or if there is an error in decoding.
+    """
     input_string = input_string.replace(" ", "")
     input_string = input_string.replace("\n", "")
     input_string = input_string.replace("\t", "")
@@ -42,6 +53,16 @@ def get_number_of_pages(pdf_path):
 
 #Function to add a number to "span_start" and "span_end" of every memeber in an array of jsons 
 def add_number_to_json_array(json_array, number):
+    """
+    Adds a specified number to the 'span_start' and 'span_end' fields of each JSON object in a given array.
+
+    Args:
+        json_array (list of dict): A list of JSON objects, each containing 'span_start' and 'span_end' keys.
+        number (int): The number to add to the 'span_start' and 'span_end' fields.
+
+    Returns:
+        list of dict: The modified list of JSON objects with updated 'span_start' and 'span_end' values.
+    """
     for json_obj in json_array:
         json_obj["span_start"] += number
         json_obj["span_end"] += number

@@ -7,7 +7,28 @@ from util import *
 
 
 def prompt_llm(context):
-    # Prompt to identify the specific entities and provide an example for one-shot learning
+    
+    '''
+    Generates a prompt for a named entity recognition task on the text of the Italian Constitution
+    and sends it to a language model for processing. The function identifies specific administrative
+    entities and their positions in the text, and returns the result as a JSON array.
+
+    Args:
+        context (str): The text of the Italian Constitution to be analyzed.
+
+    Returns:
+        str: The raw JSON response from the language model containing the identified entities and their positions.
+
+    The JSON response has the following structure:
+        },
+
+    Example:
+
+    The function also writes the generated prompt and the response from the language model to text files
+    named "prompt.txt" and "LLM_response.txt" respectively.
+    '''
+
+
     prompt = f"""
     You are a named entity recognition system. 
     I will provide you with the text of the Italian Constitution, and I want you to identify the following administrative entities and their positions in the text:
